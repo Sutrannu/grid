@@ -1,0 +1,48 @@
+FROM alpine as BUILDER
+
+# Install base dependencies
+RUN apk update \
+    && apk add --no-cache \
+        bash \
+        cargo \
+        build-base \
+        protobuf-c \
+        libressl-dev \
+        libsasl \
+        zeromq-dev curl && \
+    rm -rf /var/cache/apk/*
+
+# Install Rust
+ENV PATH=$PATH:/opt/ru/
+RUN mkdir -p /opt/ru && \
+    curl -sSfL https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init > /opt/ru/rustup-init && \
+    chmod a+x /opt/ru/rustup-init && \
+    ls -lah /opt/ru/ && \
+    /opt/ru/rustup-init -v -y --default-toolchain nightly
+
+#https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
+
+RUN USER=root cargo new --bin daemon
+WORKDIR /daemon
+
+COPY ./daemon/Cargo.toml ./Cargo.toml
+RUN cargo build --release
+
+RUN rm src/*.rs
+COPY ./daemon/src ./src
+
+RUN rm ./target/release/gridd* ./target/release/deps/gridd*
+RUN cargo -Z unstable-options build --release
+
+# create the standalone image
+FROM alpine
+
+RUN apk update \
+    && apk add --no-cache \
+        libssl1.1 \
+        libzmq && \
+    rm -rf /var/cache/apk/*
+
+COPY --from=BUILDER /daemon/target/release/gridd /
+
+CMD ["/gridd"]

@@ -1,0 +1,105 @@
+# Copyright 2017 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ------------------------------------------------------------------------------
+
+version: '2.1'
+
+services:
+
+  track-and-trace-tp:
+    image: grid-track-and-trace-tp
+    container_name: grid-track-and-trace-tp
+    build:
+      context: .
+      dockerfile: contracts/track_and_trace/Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    environment:
+      - 'http_proxy=${http_proxy}'
+      - 'https_proxy=${https_proxy}'
+      - 'no_proxy=rest-api,eth0,validator,${no_proxy}'
+    volumes:
+      - .:/grid
+      - /grid/sdk
+      - /grid/contracts/track_and_trace/target
+      - /grid/contracts/track_and_trace/src/messages
+    entrypoint: |
+      bash -c "
+        cargo build &&
+        grid-track-and-trace-tp -v -C tcp://validator:4004
+      "
+
+  validator:
+    image: hyperledger/sawtooth-validator:1.1
+    container_name: grid-sawtooth-validator
+    expose:
+      - 4004
+    ports:
+      - '4020:4004'
+    # start the validator with an empty genesis batch
+    entrypoint: |
+      bash -c "
+        if [ ! -f /etc/sawtooth/keys/validator.priv ]; then
+          sawadm keygen &&
+          sawtooth keygen my_key &&
+          sawset genesis -k /root/.sawtooth/keys/my_key.priv &&
+          sawset proposal create \
+            -k /root/.sawtooth/keys/my_key.priv \
+            sawtooth.consensus.algorithm.name=Devmode \
+            sawtooth.consensus.algorithm.version=0.1 \
+            -o config.batch &&
+          sawadm genesis config-genesis.batch config.batch
+        fi;
+        sawtooth-validator -vv \
+          --endpoint tcp://validator:8800 \
+          --bind component:tcp://eth0:4004 \
+          --bind network:tcp://eth0:8800 \
+          --bind consensus:tcp://eth0:5050
+      "
+
+  devmode-engine:
+    image: hyperledger/sawtooth-devmode-engine-rust:1.1
+    container_name: sawtooth-devmode-engine-rust-default
+    depends_on:
+      - validator
+    entrypoint: devmode-engine-rust -C tcp://validator:5050
+
+  settings-tp:
+    image: hyperledger/sawtooth-settings-tp:1.1
+    container_name: grid-sawtooth-settings-tp
+    depends_on:
+      - validator
+    entrypoint: settings-tp -vv -C tcp://validator:4004
+
+  rest-api:
+    image: hyperledger/sawtooth-rest-api:1.1
+    container_name: grid-sawtooth-rest-api
+    expose:
+      - 8008
+    ports:
+      - '8024:8008'
+    depends_on:
+      - validator
+    entrypoint: |
+      sawtooth-rest-api -vv
+        --connect tcp://validator:4004
+        --bind rest-api:8008
+
+  gridd:
+    build:
+      context: .
+      dockerfile: daemon/Dockerfile-rust
+    entrypoint: "/gridd -v"
