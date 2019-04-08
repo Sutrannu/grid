@@ -79,7 +79,7 @@ RUN apt-get update && apt-get install -y -q \
     sphinx \
     sphinxcontrib-httpdomain \
     sphinxcontrib-openapi \
-    sphinx_rtd_theme
+    sphinx_bootstrap_theme
 
 WORKDIR /project/grid/docs
 CMD make html latexpdf

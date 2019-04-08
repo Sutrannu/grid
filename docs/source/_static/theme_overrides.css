@@ -3,3 +3,47 @@
 .wy-table-responsive table td, .wy-table-responsive table th {
   white-space: normal;
 }
+
+/* Grid
+    Primary Orange:   EE5D17
+    Secondary Orange: E55A16
+    Highlight:        FF9F71
+    Shade:            953000
+*/
+
+/* Left-side navigation */
+.bs-sidenav {
+	margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-shadow: none;
+    border-radius: 0;
+    background-color: transparent;
+    overflow-y: auto;
+}
+
+/* Top navigation bar */
+.navbar-inverse, .navbar-default {
+    background-image: none;
+    background-color: #E0E3E0;
+    border-color: #DDD;
+    color: #E55A16;
+}
+
+/* Text */
+.navbar-inverse, .navbar-default .navbar-brand {
+    color: #EE5D17;
+}
+.navbar-inverse, .navbar-default .navbar-text {
+    color: #953000;
+}
+.navbar-inverse, .navbar-default .navbar-nav>li>a {
+    color: #953000;
+}
+
+.sidebar-logo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
