@@ -1,49 +1,94 @@
-/* Override table cells ignoring width settings when content is too long
-*/
-.wy-table-responsive table td, .wy-table-responsive table th {
-  white-space: normal;
-}
-
+/* Copyright (c) 2019 Bitwise IO, Inc.
+   Licensed under Creative Commons Attribution 4.0 International License
+   https://creativecommons.org/licenses/by/4.0/
+----------------------------------------------------------------------*/
 /* Grid
     Primary Orange:   EE5D17
     Secondary Orange: E55A16
     Highlight:        FF9F71
     Shade:            953000
 */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+body {
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding-top: 50px;
+}
 
-/* Left-side navigation */
-.bs-sidenav {
-	margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-shadow: none;
-    border-radius: 0;
-    background-color: transparent;
-    overflow-y: auto;
+.body {
+    min-height: 70vh;
 }
 
 /* Top navigation bar */
-.navbar-inverse, .navbar-default {
+.navbar-default {
     background-image: none;
     background-color: #E0E3E0;
-    border-color: #DDD;
+    border: none;
     color: #E55A16;
+    box-shadow: 0 0 10px rgba(21, 16, 16, 0.81);
 }
-
-/* Text */
-.navbar-inverse, .navbar-default .navbar-brand {
+.navbar-default .navbar-brand {
     color: #EE5D17;
 }
-.navbar-inverse, .navbar-default .navbar-text {
+.navbar-default .navbar-text {
     color: #953000;
 }
-.navbar-inverse, .navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>li>a:visited,
+.navbar-default .navbar-nav>li>a:active {
     color: #953000;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: #FFF;
 }
 
+.crumbs {
+    margin-top: 2rem;
+    color: #166692;
+}
+
+/* Left-side navigation */
+@media (min-width: 992px) {
+.side-column {
+    height: 96vh;
+    top: 4vh;
+    position: fixed;
+    overflow-y: auto;
+    width: 25%;
+    left: 0;
+    padding-left: 15px;
+}}
+.side-column {
+    background-color: #eed4c8;
+}
+.side-bar {
+    margin-top: 3.2em;
+    margin-left: 2%;
+    margin-right: 3rem;
+    text-shadow: none;
+    border-radius: 0;
+    background-color: transparent;
+}
 .sidebar-logo {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px 0;
+}
+.side-bar ul {
+    list-style-type: none;
+    padding-left: 1em;
+}
+.side-bar ul li {
+    list-style-type: none;
+}
+
+/* Footer */
+.inline-footer {
+    background-repeat: no-repeat;
+    background-position: center 20px;
+    background-color: #444;
+    margin-top: 2em;
+    padding-top: 160px;
+    padding-bottom: 1em;
+    max-height: 280px;
+    color: #EE5D17;
 }

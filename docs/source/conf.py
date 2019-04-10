@@ -127,20 +127,14 @@ html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': 'Hyperledger Grid',
+    'navbar_title': 'Hyperledger Grid Docs',
     # Tab name for entire site. (Default: "Site")
     #'navbar_site_name': "Site",
     # A list of tuples containing pages or urls to link to.
-    # Valid tuples should be in the following forms:
-    #    (name, page)                 # a link to a page
-    #    (name, "/aa/bb", 1)          # a link to an arbitrary relative url
-    #    (name, "http://example.com", True) # arbitrary absolute url
-    # Note the "1" or "True" value above as the third argument to indicate
-    # an arbitrary url.
     'navbar_links': [
         ("About", "/about/", True),
         ("Community", "/community/", True),
-        ("Docs", "/docs/", True),
+        ("Project", "/", True),
         ("FAQ", "/faq/", True),
     ],
     # Render the next and previous page links in navbar. (Default: true)
@@ -151,13 +145,8 @@ html_theme_options = {
     'navbar_pagenav_name': "This Page",
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
-    'globaltoc_depth': 3,
+    'globaltoc_depth': -1,
     # Include hidden TOCs in Site navbar?
-    #
-    # Note: If this is "false", you cannot have mixed ``:hidden:`` and
-    # non-hidden ``toctree`` directives in the same page, or else the build
-    # will break.
-    #
     # Values: "true" (default) or "false"
     'globaltoc_includehidden': "true",
     # HTML navbar class (Default: "navbar") to attach to <div> element.
@@ -168,20 +157,9 @@ html_theme_options = {
     'navbar_fixed_top': "true",
     # Location of link to source.
     # Options are "nav" (default), "footer" or anything else to exclude.
-    'source_link_position': "nav",
+    'source_link_position': "exclude",
     # Bootswatch (http://bootswatch.com/) theme.
-    #
-    # Options are nothing (default) or the name of a valid theme
-    # such as "cosmo" or "sandstone".
-    #
-    # The set of valid themes depend on the version of Bootstrap
-    # that's used (the next config option).
-    #
-    # Currently, the supported themes are:
-    # - Bootstrap 2: https://bootswatch.com/2
-    # - Bootstrap 3: https://bootswatch.com/3
     #'bootswatch_theme': "flatly",
-
     # Choose Bootstrap version.
     # Values: "3" (default) or "2" (in quotes)
     'bootstrap_version': "3",
@@ -267,6 +245,7 @@ html_show_sphinx = False
 # contain a <link> tag referring to it.  The value of this option must be the
 # base URL from which the finished HTML is served.
 #html_use_opensearch = ''
+html_baseurl = '/docs'
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None
