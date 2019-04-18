@@ -1,0 +1,75 @@
+{# Copyright (c) 2019 Bitwise IO, Inc.
+   Licensed under Creative Commons Attribution 4.0 International License
+   https://creativecommons.org/licenses/by/4.0/ #}
+
+{% extends "!layout.html" %}
+
+{# Modified sidebar - add classes to sidebar #}
+{%- macro side_column() %}
+  {%- if render_sidebar %}
+  <div class="{{ bs_span_prefix }}3">
+    <div class="side-column">
+      <div id="sidebar" class="side-bar">
+        {%- for sidebartemplate in sidebars %}
+          {%- include sidebartemplate %}
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro inline_footer() %}
+  <div class="inline-footer {{ bs_span_prefix }}12" style="background-image: url({{ pathto('_static/logo-dark.png',1) }});">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      {% if theme_source_link_position == "footer" %}
+        <br/>
+        {% include "sourcelink.html" %}
+      {% endif %}
+    </p>
+    <p>
+    {%- if show_copyright %}
+      {%- if hasdoc('copyright') %}
+        {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}<br/>
+      {%- else %}
+        {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}<br/>
+      {%- endif %}
+    {%- endif %}
+    {%- if last_updated %}
+      {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}<br/>
+    {%- endif %}
+    {%- if show_sphinx %}
+      {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx-doc.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}<br/>
+    {%- endif %}
+    </p>
+  </div>
+{%- endmacro %}
+
+{# Modified container - fluid #}
+{%- block content %}
+{{ navBar() }}
+<div class="container-fluid">
+  <div class="row">
+    {%- block sidebar1 %}{{ side_column() }}{% endblock %}
+    <div class="{{ bs_span_prefix }}9">
+      <div class="crumbs {{ bs_span_prefix }}12">
+        <ul class="list-inline">
+          <li><a href="{{ pathto(master_doc) }}">Docs</a></li> &rArr;
+            {% for page in parents %}
+              <li><a href="{{ page.link|e }}">{{ page.title }}</a></li> &rArr;
+            {% endfor %}
+          <li>{{ title }}</li>
+        </ul>
+      </div>
+      <div class="body {{ bs_span_prefix }}{{ bs_content_width }} content" role="main">
+        {% block body %}{% endblock %}
+      </div>
+      {{ inline_footer() }}
+    </div>
+    {% block sidebar2 %} {# possible location for sidebar #} {% endblock %}
+  </div>
+</div>
+{%- endblock %}
+
+{%- block footer %}{%- endblock %}
