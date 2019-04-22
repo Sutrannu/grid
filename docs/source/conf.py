@@ -127,14 +127,14 @@ html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': 'Hyperledger Grid Docs',
+    'navbar_title': 'Hyperledger Grid',
     # Tab name for entire site. (Default: "Site")
     #'navbar_site_name': "Site",
     # A list of tuples containing pages or urls to link to.
     'navbar_links': [
         ("About", "/about/", True),
         ("Community", "/community/", True),
-        ("Project", "/", True),
+        ("Docs", "/docs/", True),
         ("FAQ", "/faq/", True),
     ],
     # Render the next and previous page links in navbar. (Default: true)

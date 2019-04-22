@@ -15,7 +15,8 @@ body {
 }
 
 .body {
-    min-height: 70vh;
+    min-height: 60vh;
+    font-size: 1.2em;
 }
 
 /* Top navigation bar */
@@ -91,4 +92,7 @@ body {
     padding-bottom: 1em;
     max-height: 280px;
     color: #EE5D17;
+}
+.version {
+  font-size: 2.5rem;
 }
