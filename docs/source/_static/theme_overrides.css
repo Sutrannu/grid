@@ -26,9 +26,13 @@ body {
     border: none;
     color: #E55A16;
     box-shadow: 0 0 10px rgba(21, 16, 16, 0.81);
+    font-size: 1.8rem;
 }
 .navbar-default .navbar-brand {
     color: #EE5D17;
+}
+.navbar-brand {
+  font-size: 1.2em;
 }
 .navbar-default .navbar-text {
     color: #953000;
@@ -40,6 +44,20 @@ body {
 }
 .navbar-default .navbar-nav>li>a:hover {
     color: #FFF;
+}
+.navbar-default .navbar-nav {
+  font-size: 1.1em;
+}
+.navbar-default a.btn {
+  font-size: 1.5em;
+}
+.navbar-default a.btn,
+.navbar-default a.btn:visited,
+.navbar-default a.btn:active {
+    color: #222;
+}
+.navbar-default a.btn:hover {
+    color: #444;
 }
 
 .crumbs {
@@ -81,6 +99,10 @@ body {
 .side-bar ul li {
     list-style-type: none;
 }
+.side-bar li.toctree-l1 { font-size: 2rem; }
+.side-bar li.toctree-l2 { font-size: 1.8rem; }
+.side-bar li.toctree-l3 { font-size: 1.5rem; }
+.side-bar li.toctree-l4 { font-size: 1rem; }
 
 /* Footer */
 .inline-footer {

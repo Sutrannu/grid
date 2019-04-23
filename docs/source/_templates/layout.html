@@ -11,7 +11,7 @@
     <div class="side-column">
       <div id="sidebar" class="side-bar">
         {%- for sidebartemplate in sidebars %}
-          {%- include sidebartemplate %}
+          {% include sidebartemplate %}
         {%- endfor %}
       </div>
     </div>
@@ -48,13 +48,13 @@
     {%- block sidebar1 %}{{ side_column() }}{% endblock %}
     <div class="{{ bs_span_prefix }}9">
       <div class="crumbs {{ bs_span_prefix }}12">
-        <ul class="list-inline">
-          <li><a href="{{ pathto(master_doc) }}">Docs</a></li> &rArr;
-            {% for page in parents %}
-              <li><a href="{{ page.link|e }}">{{ page.title }}</a></li> &rArr;
-            {% endfor %}
+        <ol class="breadcrumb">
+          <li><a href="{{ pathto(master_doc) }}">Docs</a></li>
+            {%- for page in parents -%}
+              <li><a href="{{ page.link|e }}">{{ page.title }}</a></li>
+            {%- endfor -%}
           <li>{{ title }}</li>
-        </ul>
+        </ol>
       </div>
       <div class="body {{ bs_span_prefix }}{{ bs_content_width }} content" role="main">
         {% block body %}{% endblock %}

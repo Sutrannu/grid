@@ -15,6 +15,7 @@ import sys
 import os
 import shlex
 import sphinx_bootstrap_theme
+import sphinx_fontawesome
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -35,7 +36,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    'sphinx.ext.imgmath'
+    'sphinx.ext.imgmath',
+    'sphinx_fontawesome'
 ]
 
 # Autodoc settings
@@ -184,7 +186,8 @@ html_theme_options = {
 # Single values can also be put in this dictionary using the -A command-line
 # option of sphinx-build.
 html_context = {
-  'css_files': ['_static/theme_overrides.css']
+  'css_files': ['_static/theme_overrides.css','http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'],
+  'github': 'hyperledger/grid'
 }
 
 # The name of an image file (relative to this directory) to place at the top
@@ -215,7 +218,7 @@ html_static_path = ['_static']
 #html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-html_sidebars = {'**': ['side-header.html','localtoc.html']}
+html_sidebars = {'**': ['side-header.html','toc_custom.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
