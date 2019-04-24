@@ -3,47 +3,47 @@
    https://creativecommons.org/licenses/by/4.0/
 ----------------------------------------------------------------------*/
 /* Grid
-    Primary Orange:   EE5D17
-    Secondary Orange: E55A16
-    Highlight:        FF9F71
-    Shade:            953000
+  Primary Orange:   EE5D17
+  Secondary Orange: E55A16
+  Highlight:        FF9F71
+  Shade:            953000
 */
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 body {
   font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
-    padding-top: 50px;
+  padding-top: 50px;
 }
 
 .body {
-    min-height: 60vh;
-    font-size: 1.2em;
+  min-height: 60vh;
+  font-size: 1.2em;
 }
 
 /* Top navigation bar */
 .navbar-default {
-    background-image: none;
-    background-color: #E0E3E0;
-    border: none;
-    color: #E55A16;
-    box-shadow: 0 0 10px rgba(21, 16, 16, 0.81);
-    font-size: 1.8rem;
+  background-image: none;
+  background-color: #E0E3E0;
+  border: none;
+  color: #E55A16;
+  box-shadow: 0 0 10px rgba(21, 16, 16, 0.81);
+  font-size: 1.8rem;
 }
 .navbar-default .navbar-brand {
-    color: #EE5D17;
+  color: #EE5D17;
 }
 .navbar-brand {
   font-size: 1.2em;
 }
 .navbar-default .navbar-text {
-    color: #953000;
+  color: #953000;
 }
 .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-nav>li>a:visited,
 .navbar-default .navbar-nav>li>a:active {
-    color: #953000;
+  color: #953000;
 }
 .navbar-default .navbar-nav>li>a:hover {
-    color: #FFF;
+  color: #FFF;
 }
 .navbar-default .navbar-nav {
   font-size: 1.1em;
@@ -54,50 +54,50 @@ body {
 .navbar-default a.btn,
 .navbar-default a.btn:visited,
 .navbar-default a.btn:active {
-    color: #222;
+  color: #222;
 }
 .navbar-default a.btn:hover {
-    color: #444;
+  color: #444;
 }
 
 .crumbs {
-    margin-top: 2rem;
-    color: #166692;
+  margin-top: 2rem;
+  color: #166692;
 }
 
 /* Left-side navigation */
 @media (min-width: 992px) {
 .side-column {
-    height: 96vh;
-    top: 4vh;
-    position: fixed;
-    overflow-y: auto;
-    width: 25%;
-    left: 0;
-    padding-left: 15px;
+  height: 96vh;
+  top: 4vh;
+  position: fixed;
+  overflow-y: auto;
+  width: 25%;
+  left: 0;
+  padding-left: 15px;
 }}
 .side-column {
-    background-color: #eed4c8;
+  background-color: #eed4c8;
 }
 .side-bar {
-    margin-top: 3.2em;
-    margin-left: 2%;
-    margin-right: 3rem;
-    text-shadow: none;
-    border-radius: 0;
-    background-color: transparent;
+  margin-top: 3.2em;
+  margin-left: 2%;
+  margin-right: 3rem;
+  text-shadow: none;
+  border-radius: 0;
+  background-color: transparent;
 }
 .sidebar-logo {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 0;
 }
 .side-bar ul {
-    list-style-type: none;
-    padding-left: 1em;
+  list-style-type: none;
+  padding-left: 1em;
 }
 .side-bar ul li {
-    list-style-type: none;
+  list-style-type: none;
 }
 .side-bar li.toctree-l1 { font-size: 2rem; }
 .side-bar li.toctree-l2 { font-size: 1.8rem; }
@@ -105,16 +105,26 @@ body {
 .side-bar li.toctree-l4 { font-size: 1rem; }
 
 /* Footer */
-.inline-footer {
-    background-repeat: no-repeat;
-    background-position: center 20px;
-    background-color: #444;
-    margin-top: 2em;
-    padding-top: 160px;
-    padding-bottom: 1em;
-    max-height: 280px;
-    color: #EE5D17;
+.site-footer {
+  font-family: "Dosis","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #EEE;
+  padding: 1em;
+  color: #9B9B9B;
+  font-size: 1.5em
 }
+.footer-heading {
+  color: #EE5D17;
+}
+.site-footer a,
+.site-footer a:visited,
+.site-footer a:active {
+  color: #5D5D5D;
+  transition: all 0.3s ease-in-out;
+}
+.site-footer a:hover {
+  color: #DDD;
+}
+
 .version {
   font-size: 2.5rem;
 }

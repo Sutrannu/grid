@@ -4,6 +4,18 @@
 
 {% extends "!layout.html" %}
 
+{%- block extrahead %}
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="{{ pathto('_static/js/jquery-1.11.0.min.js', 1) }} "></script>
+<script type="text/javascript" src="{{ pathto('_static/js/jquery-fix.js', 1) }} "></script>
+<script type="text/javascript" src="{{ pathto('_static', 1) + '/bootstrap-' + bootstrap_version + '/js/bootstrap.min.js' }} "></script>
+<script type="text/javascript" src="{{ pathto('_static/bootstrap-sphinx.js', 1) }} "></script>
+<link href="https://fonts.googleapis.com/css?family=Dosis:300|Quicksand|Source+Sans+Pro" rel="stylesheet">
+{% endblock %}
+
 {# Modified sidebar - add classes to sidebar #}
 {%- macro side_column() %}
   {%- if render_sidebar %}
@@ -20,24 +32,33 @@
 {%- endmacro %}
 
 {%- macro inline_footer() %}
-  <div class="inline-footer {{ bs_span_prefix }}12" style="background-image: url({{ pathto('_static/logo-dark.png',1) }});">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      {% if theme_source_link_position == "footer" %}
-        <br/>
-        {% include "sourcelink.html" %}
-      {% endif %}
-    </p>
+<div class="inline-footer site-footer col-md-12">
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-xs-12">
     <h2 class="footer-heading">{{ project }}</h2>
-    <p>
-      <a href="http://www.linuxfoundation.org/privacy" target="_blank" title="Privacy Policy">Privacy Policy</a>
-      &bull;
-      <a href="http://www.linuxfoundation.org/terms" target="_blank" title="Terms of Service">Terms of Service</a>
-    </p>
-    <p>
-      <small class="copyright">Copyright © 2015-2019 contributors to Hyperledger Grid</small>
-    </p>
+      <p>
+        <a href="http://www.linuxfoundation.org/privacy" target="_blank" title="Privacy Policy">Privacy Policy</a>
+        &bull;
+        <a href="http://www.linuxfoundation.org/terms" target="_blank" title="Terms of Service">Terms of Service</a>
+      </p>
+      <p>
+        <small class="copyright">Copyright © 2015-2019 contributors to Hyperledger Grid</small>
+      </p>
+    </div>
+    <div class="col-md-4 col-sm-4 hidden-xs text-right">
+        <a href="#">Back to top</a>
+        {% if theme_source_link_position == "footer" %}
+          <br>
+          {% include "sourcelink.html" %}
+          <br>
+        {% else %}
+          <br>
+        {% endif %}
+        <br>
+        <img src="{{ pathto('_static/logo-bw-light.gif',1) }}">
+    </div>
   </div>
+</div>
 {%- endmacro %}
 
 {# Modified container - fluid #}
